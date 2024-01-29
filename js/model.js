@@ -6,6 +6,7 @@ export const state = {
   search: {
     query: "",
     results: [],
+    page: 1,
     resultsPerPage: RES_PER_PAGE,
   },
 };
@@ -13,7 +14,6 @@ export const state = {
 export const loadPark = async function (id) {
   try {
     const data = await getJSON(`${API_URL}${id}/`);
-    console.log("loadPark", data);
 
     const { skatepark } = data;
     state.skatepark = {
@@ -50,6 +50,29 @@ export const loadSearchResults = async function (query) {
     state.search.query = query;
 
     const data = await getJSON(`${API_URL}?search=${query}`);
+    // console.log(data);
+
+    state.search.results = data.map((prk) => {
+      return {
+        id: prk.id,
+        name: prk.name,
+        addrs: prk.address,
+        openhrs: prk.openinghours,
+        surface: prk.surface,
+        image: prk.image,
+      };
+    });
+  } catch (err) {
+    console.error(`error: ${err} `);
+    throw err;
+  }
+};
+
+// Wanted to have a checkbox or way to show All parks
+// Maybe on Map
+export const loadAllSearchResults = async function () {
+  try {
+    const data = await getJSON(`${API_URL}`);
     console.log(data);
 
     state.search.results = data.map((prk) => {
@@ -68,8 +91,9 @@ export const loadSearchResults = async function (query) {
   }
 };
 
-export const getSearchResultsPage = function (page) {
-  const start = (page - 1) * state.resultsPerPage; //0
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+  const start = (page - 1) * state.search.resultsPerPage; //0
   const end = page * state.search.resultsPerPage; //9
   return state.search.results.slice(start, end);
 };

@@ -1,4 +1,5 @@
 import View from "./View.js";
+import previewView from "./previewView.js";
 
 class ResultsView extends View {
   _parentEl = document.querySelector(".park-list");
@@ -6,26 +7,38 @@ class ResultsView extends View {
   _message = "";
 
   _generateMarkup() {
-    console.log("from resultsView _data", this._data);
-    return this._data.map(this._generateMarkupPreview).join("");
+    // console.log("from resultsView _data", this._data);
+    // return this._data.map(this._generateMarkupPreview).join("");
+
+    return this._data
+      .map((result) => previewView.render(result, false))
+      .join("");
   }
 
   _generateMarkupPreview(result) {
     const id = window.location.hash.slice(1);
+    // console.log("url id: ", id);
+    // console.log("result.id: ", result.id);
+
     return `
     <li class="preview park-list-item" data-id="">
-      <a class="preview__link" href="#${result.id}">
-      <div class="list-container">
-        <div class="thumb-container"><img class="list-thumb"src="./images/bushypark.jpg" alt="${result.name}"/></div>
-          <div class="details-container">
-            <h3 class="park__name">${result.name}</h3>
-            <h4 class="park__address">${result.addrs}</h4>
-            <p class="park__description">Opening Hours: ${result.openhrs}</p>
-            <p class="park-details-surface-text">${result.surface}</p>
-          </div>
+      <a class="preview__link ${
+        result.id === id ? "preview__link--active" : ""
+      }" href="#${result.id}">
+       <div class="list-container">
+            <div class="thumb-container"><img class="list-thumb"src="${
+              result.image
+            }" alt="${result.image}"/>
+            </div>
+            <div class="details-container">
+              <h3 class="park__name">${result.name}</h3>
+              <h4 class="park__address">${result.addrs}</h4>
+              <p class="park__description">Opening Hours: ${result.openhrs}</p>
+              <p class="park-details-surface-text">${result.surface}</p>
+            </div>
         </div>
-        </a>
-      </li>
+      </a>
+    </li>
     `;
   }
 }

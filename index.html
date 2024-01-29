@@ -18,7 +18,10 @@
   <body>
     <!-- <div class="header-container"> -->
       <header class="header">
-        <img src="./images/skater.png" alt="Logo" class="header__logo" />
+        <div class="logo-container">
+          <img src="./images/skater.png" alt="Logo" class="header__logo" />
+          <h1>Skateparks Ireland</h1>
+        </div>
         <form class="search">
           <input
             type="text"
@@ -32,10 +35,26 @@
         </nav>
       </header>
     <!-- </div> -->
-    <div class="main-container">
+    <div class="main-container grid grid--2-cols">
       <div class="left-col">
         <div class="parks">
+          <!-- SEARCH RESULTS LIST -->
           <ul class="park-list"></ul>
+          <!-- PAGINATION -->
+          <div class="pagination">
+            <!-- <button class="btn--inline pagination__btn--prev">
+              <svg class="search__icon">
+                <use href="src/img/icons.svg#icon-arrow-left"></use>
+              </svg>
+              <span>Page 1</span>
+            </button>
+            <button class="btn--inline pagination__btn--next">
+              <span>Page 3</span>
+              <svg class="search__icon">
+                <use href="src/img/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </button> -->
+          </div>
         </div>
       </div>
       <div class="right-col">

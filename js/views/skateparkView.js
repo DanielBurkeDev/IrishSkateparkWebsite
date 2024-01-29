@@ -15,7 +15,7 @@ class SkateparkView extends View {
   _generateMarkup() {
     return `
         <div class="park-img-container">
-            <img class="park-img"src="./images/bushypark.jpg" alt="" />
+            <img class="park-img"src="${this._data.image}" alt="" />
           </div>
           <div class="park-description-container">
             <h2 class="park-title">${this._data.name}</h2>

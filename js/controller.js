@@ -2,7 +2,9 @@ import * as model from "./model.js";
 import skateparkView from "./views/skateparkView.js";
 import searchView from "./views/searchView.js";
 import { API_URL } from "./config.js";
+import { RES_PER_PAGE } from "./config.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 // =================================================
 // API CALL
@@ -69,12 +71,16 @@ const controlSkateparks = async function () {
     if (!id) return;
     skateparkView.renderSpinner();
 
+    // 0) update resultsView to make search result active
+    resultsView.render(model.getSearchResultsPage());
+
     // 1) Loading the park
     await model.loadPark(id);
 
     // 2) Rendering the park
     skateparkView.render(model.state.skatepark);
   } catch (error) {
+    skateparkView.renderError();
     console.log(error);
   }
 };
@@ -85,22 +91,38 @@ const controlSearchResults = async function () {
 
     // 1) get search query
     const query = searchView.getQuery();
-
     if (!query) return;
 
-    // 2) load search results
-    await model.loadSearchResults(query);
-
+    console.log(query);
+    // Load All results
+    if (query === "All") {
+      await model.loadAllSearchResults();
+    } else {
+      // 2) load search results
+      await model.loadSearchResults(query);
+    }
     // 3) render results
-    resultsView.render(model.getSearchResultsPage(1));
+    resultsView.render(model.getSearchResultsPage());
+
+    // Render pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     console.log(error);
   }
 };
-controlSearchResults();
+// controlSearchResults();
+
+const controlPagination = function (goToPage) {
+  // 3) render NEW results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // Render NEW pagination buttons
+  paginationView.render(model.state.search);
+};
 
 const init = function () {
   skateparkView.addHandlerRender(controlSkateparks);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
