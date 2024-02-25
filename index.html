@@ -6,21 +6,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Roboto:wght@300;400;700&family=Rubik:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@300;400;700&family=Rubik:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/7b1083e115.js" crossorigin="anonymous"></script>
     <script type="module" defer src="js/controller.js"></script>
 
     <title>Irish Skate Parks</title>
   </head>
 
   <body>
-    <!-- <div class="header-container"> -->
+    
+  
       <header class="header">
         <div class="logo-container">
-          <img src="./images/skater.png" alt="Logo" class="header__logo" />
-          <h1>Skateparks Ireland</h1>
+          <img src="./images/skater.png" alt="Logo" class="logo-img" />
+          <h1 class="logo-title">Skateparks Ireland</h1>
         </div>
         <form class="search">
           <input
@@ -34,7 +40,7 @@
         </form>
         </nav>
       </header>
-    <!-- </div> -->
+    
     <div class="main-container grid grid--2-cols">
       <div class="left-col">
         <div class="parks">
@@ -61,6 +67,7 @@
         <!--The div element for the map -->
         <!-- <div id="map"></div>  -->
         <div class="park-details">
+          <p>Search by County, Name of Park, or type All to see all parks.</p>
           <!-- <img src="./images/dublin-bushy-park-01-1140x500.jpg" alt="" />
           <h2 class="park-details-title">Bushy Park</h2>
           <p class="park-details-description">
@@ -97,9 +104,6 @@
         </div>
       </div>
     </div>
-
-    <!-- prettier-ignore -->
-
-
+ 
   </body>
 </html>

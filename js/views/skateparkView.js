@@ -37,18 +37,21 @@ class SkateparkView extends View {
                 <h3 class="park-openinghours-title">Opening hours</h3>
                 <p class="park-openinghours-text">${this._data.openhrs}</p>
               </div>
-              <div class="park-phone-container spec">
-                <h3 class="park-phone-title">Phone</h3>
-                <p class="park-phone-text">${this._data.phone}</p>
+              <div class="park-contact-container spec">
+                <h3 class="park-contact-title">Contact</h3>
+                <ul>
+                  <li>                   
+                    <span>${this._data.phone}</span>
+                  </li>
+                  <li>
+                    <span>${this._data.email}</span>
+                  </li>
+                  <li>
+                    <span>${this._data.website}</span>
+                  </li>
+                </ul>               
               </div>
-              <div class="park-email-container spec">              
-                <h3 class="park-email-title">Email</h3>
-                <p class="park-email-text">${this._data.email}</p>
-              </div>
-              <div class="park-website-container spec">              
-                <h3 class="park-website-title">Website</h3>
-                <p class="park-website-text">${this._data.website}</p>
-              </div>
+
 
           </div>
 
