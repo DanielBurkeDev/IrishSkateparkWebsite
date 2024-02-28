@@ -342,7 +342,7 @@ p {
   padding: 2rem;
 }
 .right-col {
-  padding: 2rem 2rem 2rem 4rem;
+  padding: 2rem;
 }
 
 .preview__link {
@@ -371,10 +371,6 @@ p {
 
 .thumb-container {
   background-color: #cfd2d5;
-}
-
-.parks {
-  padding: 2rem;
 }
 
 .park-list-item {
@@ -437,6 +433,10 @@ p {
 .park-details {
   display: flex;
   flex-direction: column;
+}
+
+.park-img-container {
+  overflow: hidden;
 }
 
 .park-img {
@@ -657,6 +657,12 @@ p {
 
   .list-container {
     grid-template-columns: 1fr;
+  }
+
+  .park-text-container,
+  .park-specs-container {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
   }
   /* .hero {
     gap: 4.8rem;
