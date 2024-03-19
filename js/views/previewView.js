@@ -8,14 +8,16 @@ class PreviewView extends View {
     const id = Math.floor(window.location.hash.slice(1));
 
     return `
-      <li class="preview park-list-item" data-id="">
-      <a class="preview__link ${
-        this._data.id === id ? "preview__link--active" : ""
-      }" href="#${this._data.id}">
-      <div class="list-container">
-        <div class="thumb-container"><img class="list-thumb"src="${
-          this._data.image
-        }" alt="${this._data.image}"/></div>
+      <div class="preview park-list-item" data-id="">
+        <a class=" show-modal preview__link ${
+          this._data.id === id ? "preview__link--active" : ""
+        }" href="#${this._data.id}">
+        <div class="list-container">
+          <div class="thumb-container">
+              <img class="list-thumb"src="${this._data.image}" alt="${
+      this._data.image
+    }"/>
+          </div>
           <div class="details-container">
             <h3 class="park__name">${this._data.name}</h3>
             <h4 class="park__address">${this._data.addrs}</h4>
@@ -26,7 +28,7 @@ class PreviewView extends View {
           </div>
         </div>
         </a>
-      </li>
+      </div>
     `;
   }
 }

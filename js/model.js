@@ -23,7 +23,7 @@ export const loadPark = async function (id) {
       county: data.county,
       image: data.image,
       lat: data.latitude,
-      long: data.county,
+      long: data.longitude,
       phone: data.phone,
       email: data.email,
       website: data.website,
@@ -60,6 +60,8 @@ export const loadSearchResults = async function (query) {
         openhrs: prk.openinghours,
         surface: prk.surface,
         image: prk.image,
+        lat: prk.latitude,
+        long: prk.longitude,
       };
     });
   } catch (err) {

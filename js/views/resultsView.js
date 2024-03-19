@@ -2,12 +2,12 @@ import View from "./View.js";
 import previewView from "./previewView.js";
 
 class ResultsView extends View {
-  _parentEl = document.querySelector(".park-list");
+  _parentEl = document.querySelector(".parks");
   _errorMessage = "No Skateparks found for your query! Please try again ;)";
   _message = "";
 
   _generateMarkup() {
-    // console.log("from resultsView _data", this._data);
+    console.log("from resultsView _data", this._data);
     // return this._data.map(this._generateMarkupPreview).join("");
 
     return this._data
@@ -21,7 +21,8 @@ class ResultsView extends View {
     // console.log("result.id: ", result.id);
 
     return `
-    <li class="preview park-list-item" data-id="">
+    
+    <div class="preview park-list-item" data-id="">
       <a class="preview__link ${
         result.id === id ? "preview__link--active" : ""
       }" href="#${result.id}">
@@ -38,7 +39,7 @@ class ResultsView extends View {
             </div>
         </div>
       </a>
-    </li>
+    </div>
     `;
   }
 }

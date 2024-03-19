@@ -1,5 +1,9 @@
 export default class View {
   _data;
+  // _modal;
+  // _overlay;
+  // _btnCloseModal;
+  // _btnsOpenModal;
 
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
@@ -12,7 +16,7 @@ export default class View {
     if (!render) return markup;
     this._clear();
 
-    this._parentEl.insertAdjacentHTML("afterbegin", markup);
+    this._parentEl.insertAdjacentHTML("beforeend", markup);
   }
 
   update(data) {
@@ -55,9 +59,7 @@ export default class View {
   renderSpinner = function () {
     const markup = `
         <div class="spinner">
-          <img src="./images/spinner.png">
-         
-          
+          <img src="./images/spinner.png">      
         </div>
       `;
     this._parentEl.innerHTML = "";

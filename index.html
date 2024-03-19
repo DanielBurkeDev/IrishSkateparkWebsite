@@ -9,101 +9,67 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@300;400;700&family=Rubik:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.webmanifest">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="https://kit.fontawesome.com/7b1083e115.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/7b1083e115.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" defer src="js/controller.js"></script>
 
     <title>Irish Skate Parks</title>
   </head>
 
   <body>
-    
-  
-      <header class="header">
-        <div class="logo-container">
-          <img src="./images/skater.png" alt="Logo" class="logo-img" />
-          <h1 class="logo-title">Skateparks Ireland</h1>
-        </div>
-        <form class="search">
-          <input
-            type="text"
-            class="search__field"
-            placeholder="Search by Park Name or County..."
-          />
-          <button class="btn search__btn">           
-            <span>Search</span>
-          </button>
-        </form>
-        </nav>
-      </header>
-    
-    <div class="main-container grid grid--2-cols">
+    <header class="header">
+      <div class="logo-container">
+        <img src="./images/skater.png" alt="Logo" class="logo-img" />
+        <h1 class="logo-title">Skateparks Ireland</h1>
+      </div>
+      <form class="search">
+        <input
+          id="park-search"
+          type="text"
+          class="search__field"
+          placeholder="Search by Park Name or County..."
+        />
+        <button class="btn search__btn">
+          <svg class="search__icon">
+            <use href="images/icons.svg#icon-search"></use>
+          </svg>
+          <!-- <span><</span> -->
+        </button>
+      </form>
+      <span>Search by County, Park Name or All</span>
+    </header>
+
+    <div class="main-container grid">
       <div class="left-col">
+        <!-- <button class="show-modal">Show modal 1</button>
+        <button class="show-modal">Show modal 2</button>
+        <button class="show-modal">Show modal 3</button> -->
         <div class="parks">
           <!-- SEARCH RESULTS LIST -->
-          <ul class="park-list"></ul>
-          <!-- PAGINATION -->
-          <div class="pagination">
-            <!-- <button class="btn--inline pagination__btn--prev">
-              <svg class="search__icon">
-                <use href="src/img/icons.svg#icon-arrow-left"></use>
-              </svg>
-              <span>Page 1</span>
-            </button>
-            <button class="btn--inline pagination__btn--next">
-              <span>Page 3</span>
-              <svg class="search__icon">
-                <use href="src/img/icons.svg#icon-arrow-right"></use>
-              </svg>
-            </button> -->
-          </div>
+        </div>
+        <!-- PAGINATION -->
+        <div class="pagination"></div>
+      </div>
+      <div class="right-col modal hidden">
+        <button class="close-modal">&times;</button>
+        <div class="park-details"></div>
+        <div class="map-container">
+          <div id="map"></div>
         </div>
       </div>
-      <div class="right-col">
-        <!--The div element for the map -->
-        <!-- <div id="map"></div>  -->
-        <div class="park-details">
-          <p>Search by County, Name of Park, or type All to see all parks.</p>
-          <!-- <img src="./images/dublin-bushy-park-01-1140x500.jpg" alt="" />
-          <h2 class="park-details-title">Bushy Park</h2>
-          <p class="park-details-description">
-            Main feature is a shallow and deep bowl and around the top there is
-            a bump, a small flat rail, manny pad, a two step set of steps with
-            small handrail.
-          </p>
-          <h3 class="park-details-address-title">Address</h3>
-          <p class="park-details-address-text">Bushy Park, Terenure, Dublin</p>
-          <h3 class="park-details-county-title">County</h3>
-          <p class="park-details-county-text">Co. Dublin</p>
-          <h3 class="park-details-openinghours-title">Opening hours</h3>
-          <p class="park-details-openinghours-text">10.00 - 17.30</p>
-          <h3 class="park-details-phone-title">Phone</h3>
-          <p class="park-details-phone-text">None</p>
-          <h3 class="park-details-email-title">Email</h3>
-          <p class="park-details-email-text">None</p>
-          <h3 class="park-details-website-title">Website</h3>
-          <p class="park-details-website-text">None</p>
-          <h3 class="park-details-lights-title">Lights</h3>
-          <p class="park-details-lights-text">No</p>
-          <h3 class="park-details-helmets-title">Helmets</h3>
-          <p class="park-details-helmets-text">Optional</p>
-          <h3 class="park-details-surface-title">Surface</h3>
-          <p class="park-details-surface-text">Concrete</p>
-          <h3 class="park-details-indooroutdoor-title">Indoor/Outdoor</h3>
-          <p class="park-details-indooroutdoor-text">Outdoor</p>
-          <h3 class="park-details-fee-title">Fee</h3>
-          <p class="park-details-fee-text">Free</p>
-          <h3 class="park-details-pros-title">Pros</h3>
-          <p class="park-details-pros-text">fill in here</p>
-          <h3 class="park-details-cons-title">Cons</h3>
-          <p class="park-details-cons-text">fill in here</p> -->
-        </div>
-      </div>
+      <div class="overlay hidden"></div>
     </div>
- 
   </body>
 </html>
