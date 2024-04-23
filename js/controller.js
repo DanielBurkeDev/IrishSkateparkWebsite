@@ -61,7 +61,7 @@ const controlSearchResults = async function () {
 
     console.log(query);
     // Load All results
-    if (query === "All") {
+    if (query === "All" || query === "all") {
       await model.loadAllSearchResults();
     } else {
       // 2) load search results

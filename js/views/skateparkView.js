@@ -34,49 +34,65 @@ class SkateparkView extends View {
 
   _generateMarkup() {
     return `
+        <h2 class="park-title">${this._data.name}</h2>
         <div class="park-img-container">
             <img class="park-img"src="${this._data.image}" alt="" />
           </div>
           <div class="park-description-container">
-            <h2 class="park-title">${this._data.name}</h2>
+            
             <p class="park-description">
             ${this._data.descr}
             </p>
           </div>
           <div class="park-text-container">
             <div class="park-address-container park-spec">
-              <h3 class="park-address-title">Address</h3>
+              <div class="spec-title-plus-icon">
+                <span class="material-symbols-outlined">
+                location_on
+                </span>
+                <h3 class="park-address-title">Address</h3>
+              </div>
               <p class="park-address-text">${this._data.addrs}</p>
-            </div>
-            <div class="park-county-container park-spec">
-              <h3 class="park-county-title">County</h3>
-              <p class="park-county-text">${this._data.county}</p>
             </div>
 
               <div class="park-openinghours-container park-spec">
-                <h3 class="park-openinghours-title">Opening hours</h3>
+              <div class="spec-title-plus-icon">
+                <span class="material-symbols-outlined">
+                schedule
+                </span>
+                  <h3 class="park-openinghours-title">Opening hours</h3>
+              </div>
                 <p class="park-openinghours-text">${this._data.openhrs}</p>
               </div>
               <div class="park-contact-container park-spec">
-                <h3 class="park-contact-title">Contact</h3>
-                <ul>
-                  <li>                   
-                    <span>${this._data.phone}</span>
-                  </li>
-                  <li>
-                    <span>${this._data.email}</span>
-                  </li>
-                  <li>
-                    <span>${this._data.website}</span>
-                  </li>
-                </ul>               
-              </div>
-          </div>
-          <div class="park-specs-container">
+                <div class="spec-title-plus-icon">
+                  <span class="material-symbols-outlined">
+                  call
+                  </span>
+                  <h3 class="park-contact-title">Contact</h3>
+                </div>
 
-            <div class="park-lights-container park-spec">
-              <h3 class="park-lights-title">Lights</h3>
-              <p class="park-lights-text">${this._data.lights}</p>
+                  <ul>
+                    <li>                   
+                      <span>${this._data.phone}</span>
+                    </li>
+                    <li>
+                      <span>${this._data.email}</span>
+                    </li>
+                    <li>
+                      <span>${this._data.website}</span>
+                    </li>
+                  </ul>               
+              </div>
+
+              <div class="park-lights-container park-spec">
+                <div class="spec-title-plus-icon">
+                  <span class="material-symbols-outlined">
+                  lightbulb
+                  </span>
+                  <h3 class="park-lights-title">Lights</h3>
+                </div>
+                <p class="park-lights-text">${this._data.lights}</p>
             </div>
 
             <div class="park-helmets-container park-spec">
@@ -109,6 +125,10 @@ class SkateparkView extends View {
               <p class="park-cons-text">${this._data.cons}</p>
             </div>         
 
+          </div>
+          <div class="park-specs-container">
+
+            
           </div>
     `;
   }

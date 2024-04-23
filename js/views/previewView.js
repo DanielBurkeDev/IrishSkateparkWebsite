@@ -12,21 +12,30 @@ class PreviewView extends View {
         <a class=" show-modal preview__link ${
           this._data.id === id ? "preview__link--active" : ""
         }" href="#${this._data.id}">
-        <div class="list-container">
-          <div class="thumb-container">
-              <img class="list-thumb"src="${this._data.image}" alt="${
+          <div class="list-container">
+              <div class="thumb-container">
+                  <img class="list-thumb"src="${this._data.image}" alt="${
       this._data.image
-    }"/>
-          </div>
+    }"/></div>
           <div class="details-container">
             <h3 class="park__name">${this._data.name}</h3>
-            <h4 class="park__address">${this._data.addrs}</h4>
-            <p class="park__description">Opening Hours: ${
-              this._data.openhrs
-            }</p>
-            <p class="park-details-surface-text">${this._data.surface}</p>
+            <div class="addr-container">
+            <span class="material-symbols-outlined">
+            location_on
+            </span>
+                <p class="park__address">${this._data.addrs}</p>
+            </div>
+            <div class="openhrs-container">
+            <span class="material-symbols-outlined">
+            schedule
+            </span>
+              <p class="park__openhrs">Opening Hours: ${this._data.openhrs}</p>
+            </div>
+           
+            
           </div>
-        </div>
+            
+          </div>
         </a>
       </div>
     `;

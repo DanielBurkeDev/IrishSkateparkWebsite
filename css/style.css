@@ -107,30 +107,48 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  position: relative;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   /* line-height: 1.6; */
   /* font-size: 1.6rem; */
   line-height: var(--default-line-height);
   font-size: var(--default-font-size);
-  color: var(--color-grey-dark-3);
+  color: #202124;
   /* background-image: linear-gradient(
     to right bottom,
     var(--color-white),
     var(--color-primary-light-1)
-  );
-  background-size: cover;
-  background-repeat: no-repeat;
+  ); */
+
+  /* background-position: cover;
+  background-repeat: no-repeat; */
+
   min-height: 100vh;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
+
+/* body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-image: url(../images/skater.png);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+} */
 
 img {
   border-radius: 1rem;
 }
 
 p {
-  line-height: 3rem;
+  line-height: 2.25rem;
 }
 /*****************************/
 /* HELPERS */
@@ -141,8 +159,8 @@ p {
 
 .grid {
   display: grid;
-  column-gap: 6.4rem;
-  row-gap: 9.6rem;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
 }
 
 .grid--2-cols {
@@ -265,6 +283,13 @@ p {
   width: 100%;
 }
 
+/* Google Icons */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+  color: var(--color-light-orange);
+  margin-right: 1rem;
+}
+
 /*****************************/
 /* HEADER */
 /*****************************/
@@ -324,7 +349,7 @@ p {
   font-family: inherit;
   color: inherit;
   font-size: 1.7rem;
-  width: 12rem;
+  width: 18rem;
 }
 
 .search__field:focus {
@@ -366,13 +391,13 @@ p {
 
 .preview__link {
   text-decoration: none;
-  color: var(--color-grey-dark-3);
+  color: #202124;
 }
 
 .preview__link:link,
 .preview__link:visited {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 1.5rem 1.5rem;
   transition: all 0.3s;
   border-right: 1px solid #fff;
@@ -392,6 +417,7 @@ p {
 
 .thumb-container {
   background-color: #cfd2d5;
+  margin-bottom: 1.3rem;
 }
 
 .parks {
@@ -417,9 +443,24 @@ p {
 }
 
 .list-thumb {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: bottom;
   border-radius: 0;
+}
+
+.addr-container {
+  margin-bottom: 1.25rem;
+}
+.addr-container,
+.openhrs-container {
+  display: flex;
+  align-items: center;
+}
+
+.park__address {
+  color: var(--color-grey-dark-2);
 }
 
 .pagination {
@@ -441,12 +482,8 @@ p {
   float: left;
 }
 
-.details-container {
-  padding: 1.5rem;
-}
-
 .park-list-item h3 {
-  text-transform: uppercase;
+  margin-bottom: 1.5rem;
 }
 
 .park-details {
@@ -483,14 +520,19 @@ p {
   opacity: 0.6;
 }
 
+.park-title {
+  font-size: 4rem;
+}
+
 .park-img-container {
   overflow: hidden;
 }
 
 .park-img {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: bottom;
 }
 
 .park-description-container {
@@ -513,8 +555,21 @@ p {
   border-radius: 1rem;
 }
 
+.spec-title-plus-icon {
+  display: flex;
+  flex-direction: row;
+}
+
+.spec-title-plus-icon i {
+}
+
 .park-contact-container ul {
   list-style-type: none;
+}
+
+.park-surface-text {
+  text-transform: lowercase;
+  text-transform: capitalize;
 }
 
 /*****************************/
@@ -587,7 +642,7 @@ p {
 
 .close-modal {
   position: absolute;
-  top: 1.2rem;
+  top: 0.5rem;
   right: 2rem;
   font-size: 5rem;
   color: #333;
@@ -709,12 +764,28 @@ p {
   border-bottom: 1px solid transparent;
 }
 
+/* MEDIA QUERIES */
 /* rem and em do not depend on html fontsize in media queries, instead, 1rem = 1em = 16px */
 /*****************************/
 /* BELOW 1344 (SMALLER DESKTOPS)*/
 /*****************************/
 /* 1350px  /16 = 84em */
 @media (min-width: 84em) {
+  .header {
+    flex-direction: row;
+  }
+
+  .header :nth-child(2) {
+    order: 1;
+  }
+
+  .logo-container {
+    flex-direction: row;
+  }
+
+  .search__field {
+    width: 30rem;
+  }
   .main-container {
     grid-template-columns: 1fr 2fr;
   }
@@ -725,9 +796,18 @@ p {
   .close-modal {
     display: none;
   }
+
+  .park-details {
+    margin-top: 0;
+  }
+
   .park-text-container,
   .park-specs-container {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .park-spec {
+    text-align: left;
   }
 }
 
