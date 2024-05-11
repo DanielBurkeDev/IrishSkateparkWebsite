@@ -17,23 +17,24 @@ class PreviewView extends View {
                   <img class="list-thumb"src="${this._data.image}" alt="${
       this._data.image
     }"/></div>
-          <div class="details-container">
-            <h3 class="park__name">${this._data.name}</h3>
-            <div class="addr-container">
-            <span class="material-symbols-outlined">
-            location_on
-            </span>
+            <div class="details-container">
+              <h3 class="park__name">${this._data.name}</h3>
+              <div class="addr-container">
+                <span class="material-symbols-outlined">
+                location_on
+                </span>
                 <p class="park__address">${this._data.addrs}</p>
+              </div>
+              <div class="openhrs-container">
+                <span class="material-symbols-outlined">
+                schedule
+                </span>
+                <p class="park__openhrs">Opening Hours: ${
+                  this._data.openhrs
+                }</p>
+              </div>
+              
             </div>
-            <div class="openhrs-container">
-            <span class="material-symbols-outlined">
-            schedule
-            </span>
-              <p class="park__openhrs">Opening Hours: ${this._data.openhrs}</p>
-            </div>
-           
-            
-          </div>
             
           </div>
         </a>

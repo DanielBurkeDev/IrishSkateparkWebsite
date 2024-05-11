@@ -37,7 +37,7 @@ class MapView extends View {
   }
 
   // add data arg to recieve lat longs
-  addMarker() {
+  addMarker(long, lat) {
     // add markers to map
     for (const feature of geojson.features) {
       // create a HTML element for each feature

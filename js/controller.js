@@ -104,6 +104,7 @@ const controlMap = async function () {
     console.log(long, lat);
 
     mapView.initMap(long, lat);
+    // mapView.addMarker(long, lat);
   } catch (error) {
     mapView.renderError();
     console.log(error);
