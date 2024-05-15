@@ -97,13 +97,13 @@ const controlMap = async function () {
     // 1) Loading the park
     await model.loadPark(id);
 
-    const { long, lat } = model.state.skatepark;
+    const { long, lat, name, addrs } = model.state.skatepark;
 
     // const longlat = long.concat(",", " ", lat);
 
     console.log(long, lat);
 
-    mapView.initMap(long, lat);
+    mapView.initMap(long, lat, name, addrs);
     // mapView.addMarker(long, lat);
   } catch (error) {
     mapView.renderError();
