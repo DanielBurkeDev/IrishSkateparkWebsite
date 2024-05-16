@@ -287,7 +287,7 @@ p {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
   color: var(--color-light-orange);
-  margin-right: 1rem;
+  margin-right: 0.2rem;
 }
 
 /*****************************/
@@ -559,6 +559,8 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
 }
 
 .spec-title-plus-icon i {
@@ -820,6 +822,10 @@ p {
 
   .park-spec {
     text-align: left;
+  }
+
+  .spec-title-plus-icon {
+    justify-content: left;
   }
 }
 
