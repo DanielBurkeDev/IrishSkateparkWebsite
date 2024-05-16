@@ -456,7 +456,6 @@ p {
 .addr-container,
 .openhrs-container {
   display: flex;
-  align-items: center;
 }
 
 .park__address {
@@ -813,6 +812,10 @@ p {
 
   .park-details {
     margin-top: 0;
+  }
+
+  .park-description {
+    text-align: left;
   }
 
   .park-text-container,
