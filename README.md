@@ -11,6 +11,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Tech used
 
-Javascript, HTML, CSS
-Django API
+- Javascript
+-  HTML
+-   CSS
+-   Django API
 
