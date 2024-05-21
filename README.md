@@ -1,6 +1,6 @@
 # Irish skatepark guide website
 
-This is a website to show a skateboarding tourist where all of the skateparks are in Ireland. Including a detailed description of each one with photographs.
+This is a passion project Work in Progress website to show a skateboarding tourist where all of the skateparks are in Ireland. Including a detailed description of each one with photographs.
 A Map with Geocoding showing parks near the user.
 
 https://irishskateparks.netlify.app/
