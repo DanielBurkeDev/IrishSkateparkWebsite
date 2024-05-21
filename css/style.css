@@ -521,6 +521,8 @@ p {
 
 .park-title {
   font-size: 4rem;
+  line-height: 4rem;
+  margin-bottom: 2rem;
 }
 
 .park-img-container {
@@ -619,11 +621,12 @@ p {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
+  overflow: auto;
+  height: 100%;
   background-color: white;
   padding: 2rem;
   border-radius: 5px;
