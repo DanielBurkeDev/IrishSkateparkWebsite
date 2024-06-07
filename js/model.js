@@ -3,6 +3,7 @@ import { getJSON } from "./helpers.js";
 
 export const state = {
   skatepark: {},
+  allParks: {},
   search: {
     query: "",
     results: [],
@@ -85,6 +86,30 @@ export const loadAllSearchResults = async function () {
         openhrs: prk.openinghours,
         surface: prk.surface,
         image: prk.image,
+        lat: prk.latitude,
+        long: prk.longitude,
+      };
+    });
+  } catch (err) {
+    console.error(`error: ${err} `);
+    throw err;
+  }
+};
+
+export const loadAllParks = async function () {
+  try {
+    const data = await getJSON(`${API_URL}`);
+
+    state.allParks = data.map((prk) => {
+      return {
+        id: prk.id,
+        name: prk.name,
+        addrs: prk.address,
+        openhrs: prk.openinghours,
+        surface: prk.surface,
+        image: prk.image,
+        lat: prk.latitude,
+        long: prk.longitude,
       };
     });
   } catch (err) {

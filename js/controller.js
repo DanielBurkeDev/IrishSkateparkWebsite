@@ -55,11 +55,12 @@ const controlSearchResults = async function () {
   try {
     resultsView.renderSpinner();
 
-    // 1) get search query
+    // 1) GET SEARCHBOX QUERY
     const query = searchView.getQuery();
     if (!query) return;
 
     console.log(query);
+
     // Load All results
     if (query === "All" || query === "all") {
       await model.loadAllSearchResults();
@@ -76,7 +77,6 @@ const controlSearchResults = async function () {
     console.log(error);
   }
 };
-// controlSearchResults();
 
 const controlPagination = function (goToPage) {
   // 3) render NEW results
@@ -101,7 +101,8 @@ const controlMap = async function () {
 
     // const longlat = long.concat(",", " ", lat);
 
-    console.log(long, lat);
+    // console.log(long, lat);
+    // mapView.LoadAllParksOnMap(long, lat, name, addrs);
 
     mapView.initMap(long, lat, name, addrs);
     // mapView.addMarker(long, lat);
@@ -111,22 +112,67 @@ const controlMap = async function () {
   }
 };
 
+const checkGPS = async function () {
+  console.log("checking GPS Location");
+
+  function success(position) {
+    const lat = position.coords.latitude;
+    const long = position.coords.longitude;
+
+    console.log(lat, long);
+  }
+  function error() {
+    console.log("Unable to retrieve your location");
+  }
+
+  if (!navigator.geolocation) {
+    console.log("Geolocation is not supported by your browser");
+
+    // LOAD RESULTS
+    await model.loadAllSearchResults();
+    resultsView.render(model.getSearchResultsPage());
+
+    // Render pagination buttons
+    paginationView.render(model.state.search);
+  } else {
+    try {
+      console.log("Locating…");
+      navigator.geolocation.getCurrentPosition(success, error);
+
+      //FIND NEAREST PARKS
+
+      // LOAD RESULTS
+      await model.loadAllSearchResults();
+      resultsView.render(model.getSearchResultsPage());
+      // Render pagination buttons
+      paginationView.render(model.state.search);
+
+      // GET DATA AND RENDER MAP
+      await model.loadAllParks();
+      mapView.render(model.state.allParks);
+      mapView.LoadAllParksOnMap(-7.77832031, 53.2734, model.state.allParks);
+    } catch (error) {
+      mapView.renderError();
+      console.log(error);
+    }
+  }
+};
+
 const controlModal = async function () {
   console.log("x button clicked");
 };
 
 const init = function () {
+  checkGPS();
   skateparkView.addHandlerRender(controlSkateparks);
   skateparkView.addHandlerModal();
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
-
   mapView.addHandlerRender(controlMap);
 };
 init();
 
 // Modal
-
 const openModal = function () {
   modal.classList.remove("hidden");
   // overlay.classList.remove("hidden");

@@ -1,4 +1,5 @@
 import View from "./View.js";
+
 // import icons from "../../images/icons.svg";
 
 class MapView extends View {
@@ -25,6 +26,7 @@ class MapView extends View {
     );
   }
 
+  // ADDS MARKER ON PARK CLICKED
   initMap(long, lat, name, addrs) {
     // const position = { lat: -25.344, lng: 131.031 };
     mapboxgl.accessToken =
@@ -35,7 +37,7 @@ class MapView extends View {
       zoom: 15, // starting zoom
     });
 
-    // Create a default Marker, colored black, rotated 45 degrees.
+    // Create a default Marker, colored orange, rotated 45 degrees.
     const marker2 = new mapboxgl.Marker({ color: "#f6aa1c", rotation: 45 })
       .setLngLat([long, lat])
       .setPopup(
@@ -46,19 +48,42 @@ class MapView extends View {
       .addTo(map);
   }
 
-  // add data arg to recieve lat longs
-  addMarker(long, lat) {
+  LoadAllParksOnMap(long, lat, data) {
+    console.log("loadallparks: ", data);
+
+    mapboxgl.accessToken =
+      "pk.eyJ1Ijoic2thdGRldiIsImEiOiJjbHQ4enNqMGgwemV2MnBtOWJkd25ub2d5In0.zrQ_kE97VwA1hiyL09V_jQ";
+
+    const map = new mapboxgl.Map({
+      container: "map", // container ID
+      center: [long, lat], // starting position [lng, lat]
+      zoom: 7, // starting zoom
+    });
+
+    this.addMarkers(data, map);
+  }
+
+  addMarkers(data, map) {
     // add markers to map
-    for (const feature of geojson.features) {
+    // console.log("addmarkers:", Array.isArray(data));
+    // const latlngArr = [data.long, data.lat];
+
+    data.forEach((marker) => {
+      console.log("marker lat", typeof parseInt(marker.lat));
+      let latlngArr = [marker.long, marker.lat];
       // create a HTML element for each feature
-      const el = document.createElement("div");
+      var el = document.createElement("div");
       el.className = "marker";
 
-      // make a marker for each feature and add to the map
+      // make a marker for each feature and add it to the map
       new mapboxgl.Marker(el)
-        .setLngLat(feature.geometry.coordinates)
+        .setLngLat(latlngArr)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(` <p>${marker.name} </p>`)
+        )
         .addTo(map);
-    }
+    });
   }
 
   _generateMarkup() {
