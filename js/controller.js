@@ -1,7 +1,7 @@
 import * as model from "./model.js";
 import skateparkView from "./views/skateparkView.js";
 import searchView from "./views/searchView.js";
-import { API_URL } from "./config.js";
+import { API_URL, IRELATLONG } from "./config.js";
 import { RES_PER_PAGE } from "./config.js";
 import resultsView from "./views/resultsView.js";
 import paginationView from "./views/paginationView.js";
@@ -45,6 +45,15 @@ const controlSkateparks = async function () {
 
     // 2) Rendering the park
     skateparkView.render(model.state.skatepark);
+
+    // console.log("id:", id);
+    // console.log("model.state.skatepark.id: ", model.state.skatepark.id);
+    // // 3) Also go to Marker with same id
+    // if (id === model.state.skatepark.id) {
+    //   const latlong = [model.state.skatepark.lat, model.state.skatepark.long];
+    //   console.log("latlong: ", latlong);
+    //   mapView.flyToPark(map, latlong);
+    // }
   } catch (error) {
     skateparkView.renderError();
     console.log(error);
@@ -88,24 +97,42 @@ const controlPagination = function (goToPage) {
 
 // control MapResults
 const controlMap = async function () {
+  mapboxgl.accessToken =
+    "pk.eyJ1Ijoic2thdGRldiIsImEiOiJjbHQ4enNqMGgwemV2MnBtOWJkd25ub2d5In0.zrQ_kE97VwA1hiyL09V_jQ";
+
   try {
     const id = window.location.hash.slice(1);
 
-    //guard clause
+    await model.loadAllSearchResults();
+    resultsView.render(model.getSearchResultsPage());
+    // Render pagination buttons
+    paginationView.render(model.state.search);
+
+    // GET DATA AND RENDER MAP
+    // load all parks
+    await model.loadAllParks();
+    mapView.render(model.state.allParks);
+
+    const map = new mapboxgl.Map({
+      container: "map", // container ID
+      center: IRELATLONG, // starting position [lng, lat] for Ireland
+      zoom: 7, // starting zoom
+    });
+
+    mapView.addMarkers(map, model.state.allParks);
+
     if (!id) return;
+    // console.log("id:", id);
+    // console.log("model.state.skatepark.id: ", model.state.skatepark.id);
 
-    // 1) Loading the park
-    await model.loadPark(id);
+    let latlong = [model.state.skatepark.long, model.state.skatepark.lat];
 
-    const { long, lat, name, addrs } = model.state.skatepark;
-
-    // const longlat = long.concat(",", " ", lat);
-
-    // console.log(long, lat);
-    // mapView.LoadAllParksOnMap(long, lat, name, addrs);
-
-    mapView.initMap(long, lat, name, addrs);
-    // mapView.addMarker(long, lat);
+    // 3) Also go to Marker with same id
+    if (Number(id) === Number(model.state.skatepark.id)) {
+      // let latlong = [model.state.skatepark.lat, model.state.skatepark.long];
+      console.log("latlong: ", latlong);
+      mapView.flyToPark(map, latlong);
+    }
   } catch (error) {
     mapView.renderError();
     console.log(error);
@@ -114,12 +141,11 @@ const controlMap = async function () {
 
 const checkGPS = async function () {
   console.log("checking GPS Location");
+  const id = window.location.hash.slice(1);
 
   function success(position) {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
-
-    console.log(lat, long);
   }
   function error() {
     console.log("Unable to retrieve your location");
@@ -142,15 +168,15 @@ const checkGPS = async function () {
       //FIND NEAREST PARKS
 
       // LOAD RESULTS
-      await model.loadAllSearchResults();
-      resultsView.render(model.getSearchResultsPage());
-      // Render pagination buttons
-      paginationView.render(model.state.search);
+      // await model.loadAllSearchResults();
+      // resultsView.render(model.getSearchResultsPage());
+      // // Render pagination buttons
+      // paginationView.render(model.state.search);
 
-      // GET DATA AND RENDER MAP
-      await model.loadAllParks();
-      mapView.render(model.state.allParks);
-      mapView.LoadAllParksOnMap(-7.77832031, 53.2734, model.state.allParks);
+      // // GET DATA AND RENDER MAP
+      // await model.loadAllParks();
+      // mapView.render(model.state.allParks);
+      // mapView.LoadAllParksOnMap(IRELATLONG, model.state.allParks);
     } catch (error) {
       mapView.renderError();
       console.log(error);
@@ -163,11 +189,12 @@ const controlModal = async function () {
 };
 
 const init = function () {
-  checkGPS();
+  // checkGPS();
   skateparkView.addHandlerRender(controlSkateparks);
   skateparkView.addHandlerModal();
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+
   mapView.addHandlerRender(controlMap);
 };
 init();

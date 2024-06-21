@@ -36,12 +36,9 @@ class SkateparkView extends View {
   // SPEC IS SHORT FOR SPECIFICATION
   ifContentExists(data, spec) {
     let htmlMarkup;
-    // console.log("spec is: ", spec);
-    // console.log("data: ", data);
 
     switch (spec) {
       case spec:
-        // console.log("spec from cons switch: ", spec);
         if (spec === "cons" && data !== "") {
           htmlMarkup = `
           <div class="park-cons-container park-spec">
@@ -58,7 +55,6 @@ class SkateparkView extends View {
         }
 
       case spec:
-        // console.log("spec from pros switch: ", spec);
         if (spec === "pros" && data !== "") {
           htmlMarkup = `
           <div class="park-pros-container park-spec">
@@ -75,31 +71,12 @@ class SkateparkView extends View {
         }
 
       default:
-        // console.log(data);
         if (data === "") {
           htmlMarkup = "";
         }
 
         return htmlMarkup;
     }
-
-    // if (data === "") {
-    //   console.log("data is: ", data);
-    //   return htmlMarkup;
-    // } else if (data !== "") {
-    //   htmlMarkup = `
-    //   <div class="park-cons-container park-spec">
-    //       <div class="spec-title-plus-icon">
-    //         <span class="material-symbols-outlined">
-    //         close
-    //         </span>
-    //         <h3 class="park-cons-title">Cons</h3>
-    //       </div>
-    //       <p class="park-cons-text">${this._data.cons}</p>
-    //    </div>
-    //   `;
-    //   return htmlMarkup;
-    // }
   }
 
   _generateMarkup() {

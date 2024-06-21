@@ -9,9 +9,9 @@ class PreviewView extends View {
 
     return `
       <div class="preview park-list-item" data-id="">
-        <a class=" show-modal preview__link ${
-          this._data.id === id ? "preview__link--active" : ""
-        }" href="#${this._data.id}">
+        <a id= ${this._data.id} class=" show-modal preview__link ${
+      this._data.id === id ? "preview__link--active" : ""
+    }" href="#${this._data.id}">
           <div class="list-container">
               <div class="thumb-container">
                   <img class="list-thumb"src="${this._data.image}" alt="${
